@@ -1,0 +1,5 @@
+"0","gapminder %>%"
+"0","  filter(continent == ""Europe"") %>%"
+"0","  ggplot(mapping = aes(x = gdpPercap, y = lifeExp)) +"
+"0","  geom_point() + "
+"0","  facet_wrap(~ country)"

@@ -1,0 +1,7 @@
+"0","mydata <- c(""case"",""control"", ""control"", ""case"")"
+"0","factor_oerdering_example <- factor(mydata, levels = c(""control"", ""case""))"
+"0","str(factor_oerdering_example)"
+"1"," Factor w/ 2 levels ""control"",""case"": "
+"1","2 1 1 2"
+"1","
+"

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571948432369.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F3C84323",
+    "lastKnownWriteTime" : 4294967302,
+    "last_content_update" : 1571948432369,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "84772c0103f64a9a8c60579d060e18e5",
+        "name" : "gap_facet",
+        "title" : "gap_facet"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

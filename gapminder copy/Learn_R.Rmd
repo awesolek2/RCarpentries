@@ -1,0 +1,271 @@
+---
+title: "Learn_R"
+output: html_notebook
+---
+
+#Data Structure
+
+I am going to try out creating a dataframe in R, and saving the data.
+
+```{r}
+cats <- data.frame(coat = c("calico", "black", "tabby"),
+                   weight = c(2.1, 5.0, 3.2),
+                   likes_string = c(1,0,1))
+write.csv(x = cats, file = "data/feline-data.csv", row.names = FALSE)
+```
+
+Let's try reloading the data
+
+```{r}
+cats2 <- read.csv(file = "data/feline-data.csv")
+```
+
+Let's use the import function but save the code. Cick on import to toggle settings, but clicking import is not reproducible, so we just copy the code from the window and paste it below. 
+
+```{r}
+library(readr)
+feline_data <- read_csv("data/feline-data.csv", 
+    col_types = cols(likes_string = col_integer()))
+```
+
+Let's look at just weight in cats
+
+```{r}
+cats$weight
+```
+
+Let's look at coat
+
+```{r}
+cats$coat
+```
+
+Let's do operations on columns:
+
+```{r}
+cats$weight + 2
+```
+this adds 2 to every element across the vector
+
+Let's work with coat
+
+```{r}
+paste("My cat is", cats$coat)
+```
+
+
+Let's do something incorrect:
+
+```{r}
+cats$weight + cats$coat
+```
+
+### Data Types
+
+What type of data is weight? Check the Carpentries data type for different values
+```{r}
+typeof(cats$weight)
+```
+
+```{r}
+typeof(3.14)
+```
+
+```{r}
+typeof(1L)
+```
+
+```{r}
+typeof(FALSE)
+```
+
+```{r}
+typeof("banana")
+```
+
+Let's look at factors (read in using read.csv)
+```{r}
+cats <- read.csv(file = "data/feline-data.csv")
+```
+
+Let's ook at it using read_csv
+
+```{r}
+cats <- read_csv(file = "data/feline-data.csv")
+```
+
+The behavior is different
+
+##Data Frames
+
+```{r}
+class(cats)
+str(cats)
+
+```
+##Vectors / Type Coercion
+
+```{r}
+my_vector <- vector(length = 3)
+```
+
+Make another blank vector
+
+```{r}
+another_vector <- vector(mode = "character", length = 3)
+str(another_vector)
+```
+
+Making a vector
+
+```{r}
+combine_vector <- c(2,6,3)
+```
+
+What happens if we mix?
+
+```{r}
+coercion_vector <- c("a", TRUE)
+```
+
+```{r}
+another_coercion_vector <- c(0, TRUE)
+another_coercion_vector
+as.character(another_coercion_vector)
+```
+
+
+##Building Vectors
+```{r}
+
+ab <- c("a", "b")
+augab <- c(ab, "SWC")
+augab
+```
+
+Create Series
+
+```{r}
+myseries <- 1: 10
+seq(1,10, by=.01)
+```
+
+```{r}
+sequence_example <- seq(10)
+head(sequence_example, n = 2)
+length(sequence_example)
+class(sequence_example)
+typeof(sequence_example)
+
+```
+
+##Naming Elements of a vector
+
+```{r}
+my_example <- 5:8
+names(my_example) <- c("a","b","c","d")
+my_example
+names(my_example)
+```
+
+```{r}
+alphabet_vector <- 1:26
+names(alphabet_vector) <- LETTERS
+alphabet_vector
+
+```
+
+```{r}
+?read.csv
+```
+
+## Work with Factors
+
+always explicitly say what you have done with the data for reproducibility purposes. Do not ever rely on default processes
+```{r}
+mydata <- c("case","control", "control", "case")
+factor_oerdering_example <- factor(mydata, levels = c("control", "case"))
+str(factor_oerdering_example)
+```
+
+##Lists
+
+```{r}
+list_example <- list(1, "a", TRUE, 1+4i)
+```
+
+Naming elements of a list
+
+```{r}
+another_list <- list(title = "numbers", numbers = 1:10, data = TRUE)
+```
+
+Indexing elements
+
+```{r}
+cats
+str(cats[1])
+cats[[2]]
+cats[2]
+cats$coat
+cats["coat"]
+```
+I want the coat of the very first cat in the "cats" dataframe
+
+```{r}
+cats[1,1]
+```
+
+# Exploring Data Frames
+
+```{r}
+age <- c(2, 3, 5)
+```
+
+We can combine vectors and dataframes
+
+```{r}
+cbind(cats, age)
+```
+
+What if the number of rows dont match?
+
+```{r}
+age <- c(2, 3, 5, 7)
+cats <- cbind(cats, age)
+```
+
+Adding row to a dataframe (columns are vectors in dataframes, but rows are not. they are lists. When augmenting a dataframe by column - vector, by row - list)
+```{r}
+newrow <- list("tortoiseshell", 3.3, TRUE, 9)
+cats <- rbind(cats, newrow)
+cats
+```
+```{r}
+levels(cats$coat)
+levels(cats$coat) <- c(levels(cats$coat), "tortoiseshell")
+newrow <- list("tortoiseshell", 3.3, TRUE, 9)
+cats <- rbind(cats, newrow)
+cats
+```
+
+
+#Load Gap Minder Data
+
+use: "gap <- read_csv(insert URL)"
+Note that this relies on the data being available at the URL in the future
+
+```{r}
+str(gapminder_data.csv)
+```
+```{r}
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv")
+```
+
+```{r}
+str(gapminder_data)
+```
+```{r}
+
+```
+

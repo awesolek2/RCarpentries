@@ -1,0 +1,3 @@
+"0","library(readr)"
+"0","feline_data <- read_csv(""data/feline-data.csv"", "
+"0","    col_types = cols(likes_string = col_integer()))"

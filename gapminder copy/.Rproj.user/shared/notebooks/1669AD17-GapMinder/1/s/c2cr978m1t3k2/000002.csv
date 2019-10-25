@@ -1,0 +1,6 @@
+"0","gapminder %>%"
+"0","  group_by(continent) %>%"
+"0","  summarize(mean_le = mean(lifeExp), "
+"0","            min_le = min(lifeExp),"
+"0","            max_le = max(lifeExp),"
+"0","            se_le = sd(lifeExp) / sqrt(n()))"

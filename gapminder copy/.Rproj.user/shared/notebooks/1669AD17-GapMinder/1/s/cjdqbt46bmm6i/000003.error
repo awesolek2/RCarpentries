@@ -1,0 +1,1 @@
+{"frames":[],"message":"Error in ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) : \n  could not find function \"ggplot\"\n"}

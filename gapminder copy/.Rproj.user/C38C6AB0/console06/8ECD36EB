@@ -1,0 +1,13 @@
+]0;~/Desktop/gapminder[?1034hschmacwesolek:gapminder wesoleaj$ [Kschmacwesolek:gapminder wesoleaj$ [Kschmacwesolek:gapminder wesoleaj$ cd data
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ cd gapminder
+bash: cd: gapminder: No such file or directory
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ cd gapminder wesoleaj$
+bash: cd: gapminder: No such file or directory
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ ...
+bash: ...: command not found
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ ..
+bash: ..: command not found
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ //
+bash: //: is a directory
+]0;~/Desktop/gapminder/dataschmacwesolek:data wesoleaj$ cd//[K[K..[K[K ..
+[Kschmacwesolek:gapminder wesoleaj$ 

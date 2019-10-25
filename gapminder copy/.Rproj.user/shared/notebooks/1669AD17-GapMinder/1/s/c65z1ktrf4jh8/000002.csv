@@ -1,0 +1,4 @@
+"0","gapminder %>%"
+"0","  mutate(gdp_billion = ifelse(lifeExp > 25, gdpPercap * pop / 10^9, NA)) %>%"
+"0","  select(gdp_billion, everything())%>%"
+"0","  arrange(lifeExp)"

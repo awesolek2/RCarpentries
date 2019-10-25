@@ -1,0 +1,4 @@
+"0","ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, by = country, color = continent)) + "
+"0","  geom_line() + "
+"0","  geom_point()"
+"0",""

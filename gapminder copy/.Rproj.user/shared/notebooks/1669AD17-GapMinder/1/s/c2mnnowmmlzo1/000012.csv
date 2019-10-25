@@ -1,0 +1,4 @@
+"0","gapminder%>%"
+"0","  filter(continent == ""Europe"")%>%"
+"0","  select(lifeExp, everything()) %>%"
+"0","  arrange(country, desc(lifeExp))"

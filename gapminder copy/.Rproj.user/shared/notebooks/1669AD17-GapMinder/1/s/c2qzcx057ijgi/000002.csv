@@ -1,0 +1,5 @@
+"0","gap2 <- gapminder %>%"
+"0","  group_by(continent, year) %>%"
+"0","  mutate(avglifeContinent = mean(lifeExp, na.rm = TRUE)) %>%"
+"0","  mutate(LifeExpBW = lifeExp > avglifeContinent)"
+"0",""

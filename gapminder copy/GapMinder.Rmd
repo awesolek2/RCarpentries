@@ -1,0 +1,195 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv")
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+summary(gapminder$country)
+```
+
+
+#Learn ggplot
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, by = country, color = continent)) + 
+  geom_line() + 
+  geom_point()
+
+```
+
+I want the points colored seperately
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, by = country)) + 
+  geom_point(color = "red") +
+  geom_line(mapping = aes(color = continent)) 
+```
+
+
+first example:
+the data is skewed because of scale there are severl outliers that make the rest of the data difficult to interpret.
+```{r}
+library("ggplot2")
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.5) + scale_x_log10() + geom_smooth(method = "lm", size = 1.5)
+  
+
+```
+challenge: modify the color and size of the points:
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.5, size = 1.5, color = "orange", shape = 17) + scale_x_log10() + geom_smooth(method = "lm", size = 1.5)
+  
+```
+
+
+## Faceting 
+
+I only want to look at the countries in the americas
+
+```{r}
+gap_facet <- gapminder %>%
+  filter(continent == "Americas")%>%
+  ggplot(mapping = aes(x = year, y = lifeExp)) + 
+  geom_line() +
+  facet_wrap( ~ country) +
+  labs(
+    x = "Year",
+    y = "Life Expectency",
+    title = "Figure 1",
+    color = "Continent"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  
+gap_facet
+ggsave("gap_facet.jpg", gap_facet)
+```
+
+
+#Learning about Dplyr and Tidyverse
+
+I want to know the average life expectancy by continent
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(avglife = mean(lifeExp))
+
+```
+I want to add a column to every row which has the average life expectancy of the continent for the country
+
+```{r}
+gap2 <- gapminder %>%
+  group_by(continent, year) %>%
+  mutate(avglifeContinent = mean(lifeExp, na.rm = TRUE)) %>%
+  mutate(LifeExpBW = lifeExp > avglifeContinent)
+
+```
+
+I would like to see only european countries, only year, country, and gdpPercap
+
+
+```{r}
+gapminder%>%
+  filter(continent == "Europe")%>%
+  select(lifeExp, everything()) %>%
+  arrange(country, desc(lifeExp))
+```
+
+for 2002, how many countries were in each continent?
+
+```{r}
+gapminder%>%
+  filter(year == 2002)%>%
+  group_by(continent) %>%
+  summarise(count = n())
+```
+```{r}
+gapminder %>%
+  filter(year == 2002) %>%
+  count(continent)
+```
+
+```{r}
+gapminder %>%
+  tabyl(country, continent)
+```
+
+
+```{r}
+gapminder %>%
+  clean_names()
+```
+
+
+I would like a portrait of life expectancy by continent, mean, mid, max, standard errror
+
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(mean_le = mean(lifeExp), 
+            min_le = min(lifeExp),
+            max_le = max(lifeExp),
+            se_le = sd(lifeExp) / sqrt(n()))
+
+```
+
+I want to keep all of the data, but caculate GDP only for the people with a life expectancy greater than 25
+
+```{r}
+gapminder %>%
+  mutate(gdp_billion = ifelse(lifeExp > 25, gdpPercap * pop / 10^9, NA)) %>%
+  select(gdp_billion, everything())%>%
+  arrange(lifeExp)
+
+```
+##Dplyr and ggplot
+
+facet plot of all countries in europe, with GDP per capita by life expectancy
+
+```{r}
+gapminder %>%
+  filter(continent == "Europe") %>%
+  ggplot(mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + 
+  facet_wrap(~ country)
+```
+
+##Joins
+
+```{r}
+library(nycflights13)
+```
+
+```{r}
+flights
+airlines
+
+flights %>%
+  select(flight, carrier,year, month, day)%>%
+  left_join(airlines, by = c("carrier"))
+
+```
+

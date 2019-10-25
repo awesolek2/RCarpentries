@@ -1,0 +1,4 @@
+"0","newrow <- list(""tortoiseshell"", 3.3, TRUE, 9)"
+"0","cats <- rbind(cats, newrow)"
+"2","Error in xi[[j]] : subscript out of bounds
+"

@@ -1,0 +1,8 @@
+"0","cats <- read_csv(file = ""data/feline-data.csv"")"
+"2","Parsed with column specification:
+cols(
+  coat = col_character(),
+  weight = col_double(),
+  likes_string = col_integer()
+)
+"
